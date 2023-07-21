@@ -28,7 +28,7 @@ const game = async () => {
       errorMessage = '';
     }
     
-    let turn = await readLine('Where would you like to play?');
+    let turn = await readLine(`Where would you like to play player ${currentPlayer}?`);
 
     let positionFilled = false;
 
