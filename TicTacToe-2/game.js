@@ -16,6 +16,7 @@ const game = async () => {
   let currentPlayer = playerOne;
   let errorMessage = '';
   let gameOver = false;
+  let gameOverTie = false;
 
   while (gameOver === false) {
     clear();
@@ -129,16 +130,29 @@ const game = async () => {
     } else if (p4 === p5 && p5 === p6 && p4 === playerTwo) {
       gameOver = true;
       currentPlayer = playerTwo;
+   } else {
+    if (p1 === '-'|| p2 === '-'|| p3 === '-'|| p4 === '-'|| p5 === '-'|| p6 === '-'|| p7 === '-'|| p8 === '-'|| p9 === '-') {
+      gameOver = false;
+    } else {
+      gameOver = true;
+      gameOverTie = true;
+    }
    }
-
- if (gameOver === true) {
-  clear();
+  }
+   
+  if (gameOverTie === true) {
+    clear();
+      console.log(`[ ${p1} , ${p2} , ${p3} ]`);
+      console.log(`[ ${p4} , ${p5} , ${p6} ]`);
+      console.log(`[ ${p7} , ${p8} , ${p9} ]`);
+    console.log('This game has ended in a draw.')
+   } else {
+    clear();
     console.log(`[ ${p1} , ${p2} , ${p3} ]`);
     console.log(`[ ${p4} , ${p5} , ${p6} ]`);
     console.log(`[ ${p7} , ${p8} , ${p9} ]`);
   console.log(`Player ${currentPlayer} wins.`)
- }
-}
+   }
 };
 
 module.exports = game;
