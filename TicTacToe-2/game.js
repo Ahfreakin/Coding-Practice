@@ -1,6 +1,5 @@
 const readLine = require('./lib/readLine');
 const clear = require('./lib/clear');
-const random = require('./lib/random');
 
 const game = async () => {
   let p1 = '-';
@@ -16,13 +15,15 @@ const game = async () => {
   let playerTwo = 'O'
   let currentPlayer = playerOne;
   let errorMessage = '';
+  let gameOver = false;
 
-  while (true) {
+  while (gameOver === false) {
     clear();
     console.log(`[ ${p1} , ${p2} , ${p3} ]`);
     console.log(`[ ${p4} , ${p5} , ${p6} ]`);
     console.log(`[ ${p7} , ${p8} , ${p9} ]`);
     console.log(`it is ${currentPlayer}'s turn`);
+
     if (errorMessage.length > 0){
       console.log(errorMessage);
       errorMessage = '';
@@ -55,18 +56,89 @@ const game = async () => {
       } else {
         errorMessage = 'This position is already filled.';
       }
+    }
+    else if (turn === '4') {
+      if (p4 === '-') {
+        p4 = currentPlayer;
+        positionFilled = true;
+      } else {
+        errorMessage = 'This position is already filled.';
+      }
+    }
+    else if (turn === '5') {
+      if (p5 === '-') {
+        p5 = currentPlayer;
+        positionFilled = true;
+      } else {
+        errorMessage = 'This position is already filled.';
+      }
+    }
+    else if (turn === '6') {
+      if (p6 === '-') {
+        p6 = currentPlayer;
+        positionFilled = true;
+      } else {
+        errorMessage = 'This position is already filled.';
+      }
+    }
+    else if (turn === '7') {
+      if (p7 === '-') {
+        p7 = currentPlayer;
+        positionFilled = true;
+      } else {
+        errorMessage = 'This position is already filled.';
+      }
+    }
+    else if (turn === '8') {
+      if (p8 === '-') {
+        p8 = currentPlayer;
+        positionFilled = true;
+      } else {
+        errorMessage = 'This position is already filled.';
+      }
+    }
+    else if (turn === '9') {
+      if (p9 === '-') {
+        p9 = currentPlayer;
+        positionFilled = true;
+      } else {
+        errorMessage = 'This position is already filled.';
+      }
+
     } else {
      errorMessage = 'Invalid Input'
     }
 
-   if (positionFilled === true) {
-    if (currentPlayer === playerOne) {
-      currentPlayer = playerTwo;
-    } else {
-      currentPlayer = playerOne;
+    if (positionFilled === true) {
+      if (currentPlayer === playerOne) {
+        currentPlayer = playerTwo;
+      } else {
+        currentPlayer = playerOne;
+      }
     }
+
+    if (p1 === p2 && p2 === p3 && p1 === playerOne) {
+      gameOver = true;
+      currentPlayer = playerOne;
+    } else if (p1 === p2 && p2 === p3 && p1 === playerTwo) {
+      gameOver = true;
+      currentPlayer = playerTwo;
+    } else if (p4 === p5 && p5 === p6 && p4 === playerOne) {
+      gameOver = true;
+      currentPlayer = playerOne;
+    } else if (p4 === p5 && p5 === p6 && p4 === playerTwo) {
+      gameOver = true;
+      currentPlayer = playerTwo;
    }
-  }
+
+ if (gameOver === true) {
+  clear();
+    console.log(`[ ${p1} , ${p2} , ${p3} ]`);
+    console.log(`[ ${p4} , ${p5} , ${p6} ]`);
+    console.log(`[ ${p7} , ${p8} , ${p9} ]`);
+  console.log(`Player ${currentPlayer} wins.`)
+ }
+}
 };
 
 module.exports = game;
